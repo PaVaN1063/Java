@@ -1,0 +1,100 @@
+// Program on Custom Exception 
+
+import java.util.Scanner;
+
+// Invalid id for Gender selection Exception
+class InvalidInput extends RuntimeException
+{
+// creating a constructor
+	InvalidInput(String msg)
+	{
+		super(msg);
+	}
+}
+
+// Invalid Password Exception
+class InvalidPasswordException extends RuntimeException
+{
+// creating a constructor
+	InvalidPasswordException(String msg)
+	{
+		super(msg);
+	}
+}
+
+// Invalid Age Exception
+class InvalidAgeException extends RuntimeException
+{
+// creating a constructor
+	InvalidAgeException(String msg)
+	{
+		super(msg);
+	}
+}
+
+//Invalid Gender Exception
+class InvalidGender extends RuntimeException
+{
+// creating a constructor
+	InvalidGender(String msg)
+	{
+		super(msg);
+	}
+}
+
+// Main class
+public class GroupInvitation
+{
+	void Boyschatgroup(String password)
+	{
+		
+		System.out.println("1. Male");
+		System.out.println("2. Female");
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please select one option");
+		int val=sc.nextInt();
+		if(val>=3)
+		{
+			throw new InvalidInput("You are not give valid input");
+		}
+			else if(val==2)
+			{
+				throw new InvalidGender("Females are not allowed to this group");
+			}
+			else if(val==1)
+			{
+				System.out.println("Please enter your age");
+				int age=sc.nextInt();
+				if( age<18 || age>50)
+				{
+					sc.close();
+					throw new InvalidAgeException( "Age "+age+" is not allowed you must cross your age '18'. ");
+				}
+				else
+				{
+					System.out.println("Please enter your password");				
+/*Why*/				String password1 = sc.nextLine();
+					if(password==password1)
+					{
+						System.out.println("Welcome to Boys Chit-Chat Group...");
+						sc.close();
+					}
+					else
+					{
+						sc.close();
+						throw new InvalidPasswordException(" Password incorrect");
+					}
+				}
+			}
+	}
+
+public static void main(String[] args)
+{
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Please create your password: ");
+	String val1=sc.nextLine();
+	new GroupInvitation().Boyschatgroup(val1);
+	sc.close();
+}
+}
